@@ -19,7 +19,10 @@ def get_author_by_id(db: Session, author_id: int):
     """
        Retrieve a single author by ID.
     """
-    return db.query(models.DBAuthor).filter(models.DBAuthor.id == author_id).first()
+    return (
+        db.query(models.DBAuthor).
+        filter(models.DBAuthor.id == author_id).first()
+    )
 
 
 def get_author_by_name(db: Session, name: str):
@@ -48,7 +51,8 @@ def get_all_books(
         author_id: int = None,
 ):
     """
-    Returns all books in the database with optional pagination and filtering by author_id.
+    Returns all books in the database with
+    optional pagination and filtering by author_id.
     """
     query = db.query(models.DBBook)
     if author_id:
